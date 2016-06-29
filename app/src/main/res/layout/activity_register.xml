@@ -18,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:hint="Full Name" />
+        android:hint="@string/full_name" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
         android:layout_below="@+id/etFullName"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:hint="Company Name" />
+        android:hint="@string/company_name" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
         android:layout_below="@+id/etCompanyName"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:hint="Email" />
+        android:hint="@string/email" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
         android:layout_below="@+id/etEmail"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:hint="Username" />
+        android:hint="@string/username" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
         android:layout_below="@+id/etUsername"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:hint="Password" />
+        android:hint="@string/password" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -69,12 +69,12 @@
         android:layout_below="@+id/etPassword"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:hint="Re-type Password" />
+        android:hint="@string/re_type_password" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="@string/register"
         android:id="@+id/btRegister"
         android:layout_below="@+id/etPassword2"
         android:layout_alignParentStart="true"
@@ -84,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Already have an account\nLogin Here"
+        android:text="@string/already_have_an_account_nlogin_here"
         android:id="@+id/tvLoginLink"
         android:layout_below="@+id/btRegister"
         android:layout_centerHorizontal="true"
