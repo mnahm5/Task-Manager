@@ -50,6 +50,12 @@ public class Profile extends AppCompatActivity {
                 }
             }
         });
-        
+        btResetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(Profile.this, ResetPassword.class);
+                Profile.this.startActivity(intent1);
+            }
+        });
     }
 }
