@@ -11,4 +11,6 @@
     <string name="login">Login</string>
     <string name="don_apos_t_have_an_account_nregister_here">Don\'t have an account\nRegister Here</string>
     <string name="title_activity_home">Home</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="reset_password">Reset Password</string>
 </resources>

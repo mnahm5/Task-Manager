@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class Home extends AppCompatActivity {
+    private String username, fullName, email, companyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +23,10 @@ public class Home extends AppCompatActivity {
 
         final TextView tvCompanyName = (TextView) findViewById(R.id.tvCompanyName);
         final Intent intent = getIntent();
-        final String username = intent.getStringExtra("username");
-        final String fullName = intent.getStringExtra("fullName");
-        final String email = intent.getStringExtra("email");
-        final String companyName = intent.getStringExtra("companyName");
+        username = intent.getStringExtra("username");
+        fullName = intent.getStringExtra("fullName");
+        email = intent.getStringExtra("email");
+        companyName = intent.getStringExtra("companyName");
         tvCompanyName.setText(companyName);
     }
     @Override
@@ -45,6 +46,10 @@ public class Home extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_profile) {
             Intent intent = new Intent(Home.this, Profile.class);
+            intent.putExtra("username", username);
+            intent.putExtra("fullName", fullName);
+            intent.putExtra("email", email);
+            intent.putExtra("companyName", companyName);
             Home.this.startActivity(intent);
             return true;
         }

@@ -5,7 +5,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,7 +28,7 @@ public class Register extends AppCompatActivity {
         final EditText etPassword2 = (EditText) findViewById(R.id.etPassword2);
         final EditText etFullName = (EditText) findViewById(R.id.etFullName);
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
-        final EditText etCompanyName = (EditText) findViewById(R.id.etCompanyName);
+        final EditText etCompanyName = (EditText) findViewById(R.id.tvCompanyName);
         final Button btRegister = (Button) findViewById(R.id.btRegister);
         final TextView tvLoginLink = (TextView) findViewById(R.id.tvLoginLink);
 
