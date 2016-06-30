@@ -43,7 +43,9 @@ public class Home extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_profile) {
+            Intent intent = new Intent(Home.this, Profile.class);
+            Home.this.startActivity(intent);
             return true;
         }
 
