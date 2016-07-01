@@ -24,7 +24,12 @@
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Profile" />
-        <activity android:name=".ResetPassword"></activity>
+        <activity android:name=".ResetPassword" />
+        <activity
+            android:name=".Projects"
+            android:label="@string/title_activity_projects"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CreateProject"></activity>
     </application>
 
 </manifest>

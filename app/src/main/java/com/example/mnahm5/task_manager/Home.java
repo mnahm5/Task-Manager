@@ -54,6 +54,10 @@ public class Home extends AppCompatActivity {
             Home.this.startActivity(intent);
             return true;
         }
+        else if (id == R.id.action_projects) {
+            Intent intent = new Intent(Home.this, Projects.class);
+            Home.this.startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }

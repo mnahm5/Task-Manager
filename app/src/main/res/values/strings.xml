@@ -14,4 +14,9 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="reset_password">Reset Password</string>
     <string name="profile">Profile</string>
+    <string name="my_projects">My Projects</string>
+    <string name="title_activity_projects">Projects</string>
+    <string name="project_name">Project Name</string>
+    <string name="project_description">Project Description</string>
+    <string name="create_project">Create Project</string>
 </resources>
