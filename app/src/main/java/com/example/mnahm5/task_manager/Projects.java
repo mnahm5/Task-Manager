@@ -53,7 +53,5 @@ public class Projects extends AppCompatActivity {
                 Projects.this.startActivity(intent);
             }
         });
-
     }
-
 }

@@ -53,9 +53,7 @@ public class CreateProject extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
 
                             if (success) {
-                                Intent intent1 = new Intent(CreateProject.this,Projects.class);
-                                intent1.putExtra("username", username);
-                                CreateProject.this.startActivity(intent1);
+                                finish();
                             }
                             else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(CreateProject.this);
