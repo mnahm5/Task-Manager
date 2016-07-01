@@ -16,6 +16,7 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        setTitle("Profile");
 
         final EditText etFullName = (EditText) findViewById(R.id.etFullName);
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);

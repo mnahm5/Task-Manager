@@ -20,6 +20,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("Home Page");
 
         final TextView tvCompanyName = (TextView) findViewById(R.id.tvCompanyName);
         final Intent intent = getIntent();
