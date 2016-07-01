@@ -21,5 +21,6 @@
         android:text="@string/date_created"
         android:id="@+id/tvCreationDate"
         android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/tvProjectName"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>

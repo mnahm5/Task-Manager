@@ -24,15 +24,14 @@ public class Projects extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String username = intent.getStringExtra("username");
-
-        String[] projectNames = {"Project A", "Project B"};
-        String[] dates = {"10 Febrauary", "20 April"};
+        int[] projectIds = intent.getIntArrayExtra("projectIds");
+        String[] projectNames = intent.getStringArrayExtra("projectNames");
+        String[] descriptions = intent.getStringArrayExtra("descriptions");
+        String[] datesCreated = intent.getStringArrayExtra("datesCreated");
         ArrayList<ProjectCard> projectCards = new ArrayList<ProjectCard>();
-        for (int i = 0; i < projectNames.length; i++) {
-            projectCards.add(i, new ProjectCard(projectNames[i],dates[i]));
+        for (int i = 0; i < projectIds.length; i++) {
+            projectCards.add(i,new ProjectCard(projectIds[i], projectNames[i], descriptions[i], datesCreated[i]));
         }
-
-
         ListAdapter listAdapter = new ProjectCardCustomerAdapter(this, projectCards);
         ListView listView = (ListView) findViewById(R.id.ProjectListView);
         listView.setAdapter(listAdapter);
