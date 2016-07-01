@@ -20,4 +20,7 @@
     <string name="project_description">Project Description</string>
     <string name="create_project">Create Project</string>
     <string name="date_created">Date Created</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="cancel">Cancel</string>
 </resources>

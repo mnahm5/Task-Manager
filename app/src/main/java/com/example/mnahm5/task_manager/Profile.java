@@ -1,7 +1,6 @@
 package com.example.mnahm5.task_manager;
 
 import android.content.Intent;
-import android.opengl.EGLDisplay;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,7 +29,7 @@ public class Profile extends AppCompatActivity {
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
         final EditText etCompanyName = (EditText) findViewById(R.id.etCompanyName);
         final Button btEdit = (Button) findViewById(R.id.btEdit);
-        final Button btResetPassword = (Button) findViewById(R.id.btResetPassword);
+        final Button btResetPassword = (Button) findViewById(R.id.btReset);
 
         Intent intent = getIntent();
         final String username = intent.getStringExtra("username");
@@ -101,6 +100,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent1 = new Intent(Profile.this, ResetPassword.class);
+                intent1.putExtra("username",username);
                 Profile.this.startActivity(intent1);
             }
         });
