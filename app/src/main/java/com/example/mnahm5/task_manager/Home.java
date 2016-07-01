@@ -56,6 +56,7 @@ public class Home extends AppCompatActivity {
         }
         else if (id == R.id.action_projects) {
             Intent intent = new Intent(Home.this, Projects.class);
+            intent.putExtra("username", username);
             Home.this.startActivity(intent);
         }
 

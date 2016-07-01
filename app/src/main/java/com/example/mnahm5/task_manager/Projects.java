@@ -22,6 +22,9 @@ public class Projects extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setTitle("My Projects");
 
+        Intent intent = getIntent();
+        final String username = intent.getStringExtra("username");
+
         String[] projectNames = {"Project A", "Project B"};
         String[] dates = {"10 Febrauary", "20 April"};
         ArrayList<ProjectCard> projectCards = new ArrayList<ProjectCard>();
@@ -46,6 +49,7 @@ public class Projects extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Projects.this, CreateProject.class);
+                intent.putExtra("username", username);
                 Projects.this.startActivity(intent);
             }
         });
