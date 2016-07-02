@@ -28,4 +28,15 @@
     <string name="doing">Doing</string>
     <string name="done">Done</string>
     <string name="edit_project_details">Edit Project Details</string>
+    <string name="title_activity_project_tasks">ProjectTasks</string>
+    <string name="task_title">Task Title</string>
+    <string name="task_description">Task Description</string>
+    <string name="due_date">Due Date</string>
+    <string name="choose_which_list_you_want_to_add_the_above_task">Choose which List you want to add the above task</string>
+    <string name="add_new_task">Add New Task</string>
+    <string-array name="taskTypes">
+        <item>To Do</item>
+        <item>Doing</item>
+        <item>Done</item>
+    </string-array>
 </resources>

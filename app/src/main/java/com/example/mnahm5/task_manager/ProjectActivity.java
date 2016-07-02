@@ -37,6 +37,7 @@ public class ProjectActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        String taskType = "";
 
         if (id == R.id.action_project_settings) {
             Intent intent = new Intent(ProjectActivity.this, ProjectSettings.class);
@@ -47,7 +48,22 @@ public class ProjectActivity extends AppCompatActivity {
             intent.putExtra("dateCreated", dateCreated);
             ProjectActivity.this.startActivity(intent);
         }
-
+        else {
+            if (id == R.id.action_to_do) {
+                taskType = "To Do";
+            }
+            else if (id == R.id.action_doing) {
+                taskType = "Doing";
+            }
+            else if (id == R.id.action_done) {
+                taskType = "Done";
+            }
+            Intent intent = new Intent(ProjectActivity.this, ProjectTasks.class);
+            intent.putExtra("taskType", taskType);
+            intent.putExtra("projectId", projectId);
+            intent.putExtra("projectName", projectName);
+            ProjectActivity.this.startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }

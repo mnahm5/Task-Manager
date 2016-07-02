@@ -31,7 +31,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CreateProject" />
         <activity android:name=".ProjectActivity" />
-        <activity android:name=".ProjectSettings"></activity>
+        <activity android:name=".ProjectSettings" />
+        <activity
+            android:name=".ProjectTasks"
+            android:label="@string/title_activity_project_tasks"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CreateTask"></activity>
     </application>
 
 </manifest>
