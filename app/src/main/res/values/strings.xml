@@ -27,4 +27,5 @@
     <string name="to_do">To do</string>
     <string name="doing">Doing</string>
     <string name="done">Done</string>
+    <string name="edit_project_details">Edit Project Details</string>
 </resources>

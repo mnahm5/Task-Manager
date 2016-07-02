@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class ProjectActivity extends AppCompatActivity {
+    private String username, projectId, projectName, description, dateCreated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,11 +15,11 @@ public class ProjectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_project);
 
         Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
-        String projectId = intent.getStringExtra("projectId");
-        String projectName = intent.getStringExtra("projectName");
-        String description = intent.getStringExtra("description");
-        String dateCreated = intent.getStringExtra("dateCreated");
+        username = intent.getStringExtra("username");
+        projectId = intent.getStringExtra("projectId");
+        projectName = intent.getStringExtra("projectName");
+        description = intent.getStringExtra("description");
+        dateCreated = intent.getStringExtra("dateCreated");
         setTitle(projectName);
 
     }
@@ -37,9 +38,15 @@ public class ProjectActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-//        if (id == R.id.action_project_settings) {
-//
-//        }
+        if (id == R.id.action_project_settings) {
+            Intent intent = new Intent(ProjectActivity.this, ProjectSettings.class);
+            intent.putExtra("username", username);
+            intent.putExtra("projectId", projectId);
+            intent.putExtra("projectName", projectName);
+            intent.putExtra("description", description);
+            intent.putExtra("dateCreated", dateCreated);
+            ProjectActivity.this.startActivity(intent);
+        }
 
 
         return super.onOptionsItemSelected(item);

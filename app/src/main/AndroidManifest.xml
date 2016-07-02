@@ -30,7 +30,8 @@
             android:label="@string/title_activity_projects"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CreateProject" />
-        <activity android:name=".ProjectActivity"></activity>
+        <activity android:name=".ProjectActivity" />
+        <activity android:name=".ProjectSettings"></activity>
     </application>
 
 </manifest>
