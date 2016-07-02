@@ -59,9 +59,9 @@ public class ProjectActivity extends AppCompatActivity {
                 taskType = "Done";
             }
             Intent intent = new Intent(ProjectActivity.this, ProjectTasks.class);
-            intent.putExtra("taskType", taskType);
             intent.putExtra("projectId", projectId);
             intent.putExtra("projectName", projectName);
+            intent.putExtra("taskType", taskType);
             ProjectActivity.this.startActivity(intent);
         }
 

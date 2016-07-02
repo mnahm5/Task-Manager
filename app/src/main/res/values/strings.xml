@@ -34,7 +34,9 @@
     <string name="due_date">Due Date</string>
     <string name="choose_which_list_you_want_to_add_the_above_task">Choose which List you want to add the above task</string>
     <string name="add_new_task">Add New Task</string>
+    <string name="choose_due_date">Choose Due Date</string>
     <string-array name="taskTypes">
+        <item>Choose Task List</item>
         <item>To Do</item>
         <item>Doing</item>
         <item>Done</item>
