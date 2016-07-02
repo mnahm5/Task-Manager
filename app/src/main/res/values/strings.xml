@@ -23,4 +23,8 @@
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
     <string name="cancel">Cancel</string>
+    <string name="project_settings">Project Settings</string>
+    <string name="to_do">To do</string>
+    <string name="doing">Doing</string>
+    <string name="done">Done</string>
 </resources>

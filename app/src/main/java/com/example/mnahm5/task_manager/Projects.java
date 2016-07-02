@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,9 +23,9 @@ public class Projects extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setTitle("My Projects");
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         final String username = intent.getStringExtra("username");
-        int[] projectIds = intent.getIntArrayExtra("projectIds");
+        String[] projectIds = intent.getStringArrayExtra("projectIds");
         String[] projectNames = intent.getStringArrayExtra("projectNames");
         String[] descriptions = intent.getStringArrayExtra("descriptions");
         String[] datesCreated = intent.getStringArrayExtra("datesCreated");
@@ -33,13 +34,20 @@ public class Projects extends AppCompatActivity {
             projectCards.add(i,new ProjectCard(projectIds[i], projectNames[i], descriptions[i], datesCreated[i]));
         }
         ListAdapter listAdapter = new ProjectCardCustomerAdapter(this, projectCards);
-        ListView listView = (ListView) findViewById(R.id.ProjectListView);
+        final ListView listView = (ListView) findViewById(R.id.ProjectListView);
         listView.setAdapter(listAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                ProjectCard projectCard = (ProjectCard) listView.getItemAtPosition(i);
+                Intent intent1 = new Intent(Projects.this, ProjectActivity.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("projectId", projectCard.projectId);
+                intent1.putExtra("projectName", projectCard.projectName);
+                intent1.putExtra("description", projectCard.description);
+                intent1.putExtra("dateCreated", projectCard.dateCreated);
+                Projects.this.startActivity(intent1);
             }
         });
 

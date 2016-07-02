@@ -29,7 +29,8 @@
             android:name=".Projects"
             android:label="@string/title_activity_projects"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CreateProject"></activity>
+        <activity android:name=".CreateProject" />
+        <activity android:name=".ProjectActivity"></activity>
     </application>
 
 </manifest>

@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -79,12 +80,12 @@ public class Home extends AppCompatActivity {
                             JSONArray descriptions = jsonResponse.getJSONArray("descriptions");
                             JSONArray datesCreated = jsonResponse.getJSONArray("datesCreated");
                             Intent intent1 = new Intent(Home.this, Projects.class);
-                            int[] projectIdArray = new int[noOfProjects];
+                            String[] projectIdArray = new String[noOfProjects];
                             String[] projectNameArray = new String[noOfProjects];
                             String[] descriptionArray = new String[noOfProjects];
                             String[] dateCreatedArray = new String[noOfProjects];
                             for (int i = 0; i < noOfProjects; i++) {
-                                projectIdArray[i] = projectIds.getInt(i);
+                                projectIdArray[i] = projectIds.getString(i);
                                 projectNameArray[i] = projectNames.getString(i);
                                 descriptionArray[i] = descriptions.getString(i);
                                 dateCreatedArray[i] = datesCreated.getString(i);
