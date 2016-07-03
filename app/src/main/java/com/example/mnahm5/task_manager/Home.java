@@ -1,6 +1,8 @@
 package com.example.mnahm5.task_manager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,10 +19,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
     private String username, fullName, email, companyName;
@@ -33,12 +38,16 @@ public class Home extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setTitle("Home Page");
 
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String userDetailsJson = sharedPreferences.getString("UserDetails", "");
+        UserDetails user = gson.fromJson(userDetailsJson, UserDetails.class);
+        username = user.username;
+        fullName = user.fullName;
+        email = user.email;
+        companyName = user.companyName;
+
         final TextView tvCompanyName = (TextView) findViewById(R.id.tvCompanyName);
-        final Intent intent = getIntent();
-        username = intent.getStringExtra("username");
-        fullName = intent.getStringExtra("fullName");
-        email = intent.getStringExtra("email");
-        companyName = intent.getStringExtra("companyName");
         tvCompanyName.setText(companyName);
     }
     @Override
@@ -79,22 +88,20 @@ public class Home extends AppCompatActivity {
                             JSONArray projectNames = jsonResponse.getJSONArray("projectNames");
                             JSONArray descriptions = jsonResponse.getJSONArray("descriptions");
                             JSONArray datesCreated = jsonResponse.getJSONArray("datesCreated");
-                            Intent intent1 = new Intent(Home.this, Projects.class);
-                            String[] projectIdArray = new String[noOfProjects];
-                            String[] projectNameArray = new String[noOfProjects];
-                            String[] descriptionArray = new String[noOfProjects];
-                            String[] dateCreatedArray = new String[noOfProjects];
+                            ArrayList<ProjectCard> projectCards = new ArrayList<ProjectCard>();
                             for (int i = 0; i < noOfProjects; i++) {
-                                projectIdArray[i] = projectIds.getString(i);
-                                projectNameArray[i] = projectNames.getString(i);
-                                descriptionArray[i] = descriptions.getString(i);
-                                dateCreatedArray[i] = datesCreated.getString(i);
+                                projectCards.add(i, new ProjectCard(projectIds.getString(i),
+                                        projectNames.getString(i),
+                                        descriptions.getString(i),
+                                        datesCreated.getString(i)));
                             }
-                            intent1.putExtra("projectIds",projectIdArray);
-                            intent1.putExtra("projectNames", projectNameArray);
-                            intent1.putExtra("descriptions", descriptionArray);
-                            intent1.putExtra("datesCreated", dateCreatedArray);
-                            intent1.putExtra("username",username);
+                            SharedPreferences sharedPreferences = getSharedPreferences("projectInfo", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            Gson gson = new Gson();
+                            String allProjectDetailsJson = gson.toJson(projectCards);
+                            editor.putString("allProjectDetailsJson", allProjectDetailsJson);
+                            editor.apply();
+                            Intent intent1 = new Intent(Home.this, Projects.class);
                             Home.this.startActivity(intent1);
                         }
                         else {

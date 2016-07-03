@@ -1,6 +1,8 @@
 package com.example.mnahm5.task_manager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,11 +58,14 @@ public class Login extends AppCompatActivity {
                                 String fullName = jsonResponse.getString("fullName");
                                 String email = jsonResponse.getString("email");
                                 String companyName = jsonResponse.getString("companyName");
+                                UserDetails user = new UserDetails(username, fullName, email, companyName);
+                                SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                Gson gson = new Gson();
+                                String userDetailsJson = gson.toJson(user);
+                                editor.putString("UserDetails", userDetailsJson);
+                                editor.apply();
                                 Intent intent = new Intent(Login.this, Home.class);
-                                intent.putExtra("username", username);
-                                intent.putExtra("fullName", fullName);
-                                intent.putExtra("email", email);
-                                intent.putExtra("companyName", companyName);
                                 Login.this.startActivity(intent);
                                 finish();
                             }
