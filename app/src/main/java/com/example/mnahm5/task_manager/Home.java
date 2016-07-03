@@ -67,10 +67,6 @@ public class Home extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_profile) {
             Intent intent = new Intent(Home.this, Profile.class);
-            intent.putExtra("username", username);
-            intent.putExtra("fullName", fullName);
-            intent.putExtra("email", email);
-            intent.putExtra("companyName", companyName);
             Home.this.startActivity(intent);
             return true;
         }

@@ -1,17 +1,21 @@
 package com.example.mnahm5.task_manager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,8 +33,12 @@ public class ResetPassword extends AppCompatActivity {
         final Button btReset = (Button) findViewById(R.id.btReset);
         final Button btCancel = (Button) findViewById(R.id.btCancel);
 
-        Intent intent = getIntent();
-        final String username = intent.getStringExtra("username");
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String userDetailsJson = sharedPreferences.getString("UserDetails", "");
+        UserDetails user = gson.fromJson(userDetailsJson, UserDetails.class);
+        final String username = user.username;
+        Toast.makeText(ResetPassword.this, username, Toast.LENGTH_LONG).show();
 
         btCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +65,7 @@ public class ResetPassword extends AppCompatActivity {
                                 boolean success = jsonResponse.getBoolean("success");
 
                                 if (success) {
-                                    Intent intent = new Intent(ResetPassword.this, Login.class);
+                                    Intent intent = new Intent(ResetPassword.this, Home.class);
                                     ResetPassword.this.startActivity(intent);
                                     finish();
                                 }

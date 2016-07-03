@@ -1,6 +1,8 @@
 package com.example.mnahm5.task_manager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,11 +34,14 @@ public class Profile extends AppCompatActivity {
         final Button btEdit = (Button) findViewById(R.id.btEdit);
         final Button btResetPassword = (Button) findViewById(R.id.btReset);
 
-        Intent intent = getIntent();
-        final String username = intent.getStringExtra("username");
-        String fullName = intent.getStringExtra("fullName");
-        String email = intent.getStringExtra("email");
-        String companyName = intent.getStringExtra("companyName");
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String userDetailsJson = sharedPreferences.getString("UserDetails", "");
+        UserDetails user = gson.fromJson(userDetailsJson, UserDetails.class);
+        final String username = user.username;
+        String fullName = user.fullName;
+        String email = user.email;
+        String companyName = user.companyName;
 
         etFullName.setText(fullName);
         etEmail.setText(email);
@@ -68,11 +74,14 @@ public class Profile extends AppCompatActivity {
                                 boolean success = jsonResponse.getBoolean("success");
 
                                 if (success) {
+                                    UserDetails user = new UserDetails(username, newFullName, newEmail, newCompanyName);
+                                    SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    Gson gson = new Gson();
+                                    String userDetailsJson = gson.toJson(user);
+                                    editor.putString("UserDetails", userDetailsJson);
+                                    editor.apply();
                                     Intent intent = new Intent(Profile.this, Home.class);
-                                    intent.putExtra("username",username);
-                                    intent.putExtra("fullName", newFullName);
-                                    intent.putExtra("email", newEmail);
-                                    intent.putExtra("companyName", newCompanyName);
                                     Profile.this.startActivity(intent);
                                     finish();
                                 }
@@ -100,7 +109,6 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent1 = new Intent(Profile.this, ResetPassword.class);
-                intent1.putExtra("username",username);
                 Profile.this.startActivity(intent1);
             }
         });
