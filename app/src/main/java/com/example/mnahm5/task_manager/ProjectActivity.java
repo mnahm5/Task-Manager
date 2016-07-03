@@ -66,7 +66,6 @@ public class ProjectActivity extends AppCompatActivity {
             editor.apply();
             Intent intent = new Intent(ProjectActivity.this, Login.class);
             ProjectActivity.this.startActivity(intent);
-            finish();
         }
         else {
             if (id == R.id.action_to_do) {
