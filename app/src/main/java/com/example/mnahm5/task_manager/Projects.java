@@ -49,6 +49,9 @@ public class Projects extends AppCompatActivity {
                 ProjectCard projectCard = (ProjectCard) listView.getItemAtPosition(i);
                 Intent intent1 = new Intent(Projects.this, ProjectActivity.class);
                 intent1.putExtra("projectId", projectCard.projectId);
+                intent1.putExtra("projectName", projectCard.projectName);
+                intent1.putExtra("description", projectCard.description);
+                intent1.putExtra("dateCreated", projectCard.dateCreated);
                 Projects.this.startActivity(intent1);
             }
         });
