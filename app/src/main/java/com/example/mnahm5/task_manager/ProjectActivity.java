@@ -52,7 +52,6 @@ public class ProjectActivity extends AppCompatActivity {
 
         if (id == R.id.action_project_settings) {
             Intent intent = new Intent(ProjectActivity.this, ProjectSettings.class);
-            intent.putExtra("username", username);
             intent.putExtra("projectId", projectId);
             intent.putExtra("projectName", projectName);
             intent.putExtra("description", description);
