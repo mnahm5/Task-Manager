@@ -70,6 +70,15 @@ public class Home extends AppCompatActivity {
             Home.this.startActivity(intent);
             return true;
         }
+        else if (id == R.id.action_logout) {
+            SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+            Intent intent = new Intent(Home.this, Login.class);
+            Home.this.startActivity(intent);
+            finish();
+        }
         else if (id == R.id.action_projects) {
             Response.Listener<String> responseListener = new Response.Listener<String>() {
                 @Override

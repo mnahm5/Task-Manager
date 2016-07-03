@@ -1,6 +1,8 @@
 package com.example.mnahm5.task_manager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,6 +58,15 @@ public class ProjectActivity extends AppCompatActivity {
             intent.putExtra("description", description);
             intent.putExtra("dateCreated", dateCreated);
             ProjectActivity.this.startActivity(intent);
+        }
+        else if (id == R.id.action_logout) {
+            SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+            Intent intent = new Intent(ProjectActivity.this, Login.class);
+            ProjectActivity.this.startActivity(intent);
+            finish();
         }
         else {
             if (id == R.id.action_to_do) {
