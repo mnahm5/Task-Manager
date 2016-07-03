@@ -137,9 +137,11 @@ public class ProjectSettings extends AppCompatActivity {
                                 Type type = new TypeToken<List<ProjectCard>>(){}.getType();
                                 List<ProjectCard> projectCardList = gson.fromJson(allProjectDetailsJson, type);
                                 ArrayList<ProjectCard> projectCards = new ArrayList<ProjectCard>();
+                                int j = 0;
                                 for (int i = 0; i < projectCardList.size(); i++) {
                                     if (!projectCardList.get(i).projectId.equals(projectId)) {
-                                        projectCards.add(i,projectCardList.get(i));
+                                        projectCards.add(j,projectCardList.get(i));
+                                        j++;
                                     }
                                 }
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
