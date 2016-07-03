@@ -37,6 +37,7 @@
     <string name="choose_due_date">Choose Due Date</string>
     <string name="due_date_n23rd_february">Due Date:\n23rd February</string>
     <string name="logout">Logout</string>
+    <string name="edit_task_details">Edit Task Details</string>
     <string-array name="taskTypes">
         <item>Choose Task List</item>
         <item>To Do</item>

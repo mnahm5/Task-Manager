@@ -1,10 +1,10 @@
 package com.example.mnahm5.task_manager;
 
-public class taskCard {
-    public String projectId, taskTitle, description, dueDate;
+public class TaskCard {
+    public String taskId, taskTitle, description, dueDate;
 
-    public taskCard(String projectId, String taskTitle, String description, String dueDate) {
-        this.projectId = projectId;
+    public TaskCard(String taskId, String taskTitle, String description, String dueDate) {
+        this.taskId = taskId;
         this.taskTitle = taskTitle;
         this.description = description;
         this.dueDate = dueDate;

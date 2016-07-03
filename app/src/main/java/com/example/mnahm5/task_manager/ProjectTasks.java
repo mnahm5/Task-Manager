@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -21,7 +22,7 @@ public class ProjectTasks extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         final String projectId = intent.getStringExtra("projectId");
         final String projectName = intent.getStringExtra("projectName");
         final String taskType = intent.getStringExtra("taskType");
@@ -32,14 +33,27 @@ public class ProjectTasks extends AppCompatActivity {
         String[] taskTitles = intent.getStringArrayExtra("taskTitles");
         String[] descriptions = intent.getStringArrayExtra("descriptions");
         String[] dueDates = intent.getStringArrayExtra("dueDates");
-        ArrayList<taskCard> taskCards = new ArrayList<taskCard>();
+        final ArrayList<TaskCard> taskCards = new ArrayList<TaskCard>();
         for (int i = 0; i < taskIds.length; i++) {
-            taskCards.add(i,new taskCard(taskIds[i], taskTitles[i], descriptions[i], dueDates[i]));
+            taskCards.add(i,new TaskCard(taskIds[i], taskTitles[i], descriptions[i], dueDates[i]));
         }
         ListAdapter listAdapter = new taskCardCustomAdapter(this, taskCards);
         final ListView listView = (ListView) findViewById(R.id.taskListView);
         listView.setAdapter(listAdapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TaskCard taskCard = (TaskCard) listView.getItemAtPosition(i);
+                Intent intent1 = new Intent(ProjectTasks.this, TaskDetails.class);
+                intent1.putExtra("taskId", taskCard.taskId);
+                intent1.putExtra("taskTitle", taskCard.taskTitle);
+                intent1.putExtra("description", taskCard.description);
+                intent1.putExtra("dueDate", taskCard.dueDate);
+                intent1.putExtra("taskType", taskType);
+                ProjectTasks.this.startActivity(intent1);
+            }
+        });
 
         FloatingActionButton btAddTask = (FloatingActionButton) findViewById(R.id.btAddTask);
         btAddTask.setOnClickListener(new View.OnClickListener() {

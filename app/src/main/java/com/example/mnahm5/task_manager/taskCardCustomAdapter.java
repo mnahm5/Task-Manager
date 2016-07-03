@@ -12,9 +12,9 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class taskCardCustomAdapter extends ArrayAdapter<taskCard> {
+public class taskCardCustomAdapter extends ArrayAdapter<TaskCard> {
 
-    taskCardCustomAdapter(Context context, ArrayList<taskCard> taskCards) {
+    taskCardCustomAdapter(Context context, ArrayList<TaskCard> taskCards) {
         super(context, R.layout.task_card, taskCards);
     }
 
@@ -23,7 +23,7 @@ public class taskCardCustomAdapter extends ArrayAdapter<taskCard> {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         View customView = layoutInflater.inflate(R.layout.task_card, parent, false);
 
-        taskCard taskCard = getItem(position);
+        TaskCard taskCard = getItem(position);
         final TextView tvTaskTitle = (TextView) customView.findViewById(R.id.tvTaskTitle);
         final TextView tvDueDate = (TextView) customView.findViewById(R.id.tvDueDate);
         tvTaskTitle.setText(taskCard.taskTitle);
