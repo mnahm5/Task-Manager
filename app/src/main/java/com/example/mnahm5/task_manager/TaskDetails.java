@@ -47,6 +47,7 @@ public class TaskDetails extends AppCompatActivity {
         final Spinner spTaskType = (Spinner) findViewById(R.id.spTaskType);
         final DatePicker dpDueDate = (DatePicker) findViewById(R.id.dpDueDate);
         final Button btEdit = (Button) findViewById(R.id.btEdit);
+        final Button btDelete = (Button) findViewById(R.id.btDelete);
         final Button btCancel = (Button) findViewById(R.id.btCancel);
 
         etTaskTitle.setText(taskTitle);
@@ -130,6 +131,40 @@ public class TaskDetails extends AppCompatActivity {
                         queue.add(taskEditRequest);
                     }
                 }
+            }
+        });
+
+        btDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            boolean success = jsonResponse.getBoolean("success");
+
+                            if (success) {
+                                Intent intent = new Intent(TaskDetails.this, Projects.class);
+                                TaskDetails.this.startActivity(intent);
+                                finish();
+                            }
+                            else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(TaskDetails.this);
+                                builder.setMessage("Task Deletion Failed")
+                                        .setNegativeButton("Retry",null)
+                                        .create()
+                                        .show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                DeleteTaskRequest deleteTaskRequest = new DeleteTaskRequest(taskId, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(TaskDetails.this);
+                queue.add(deleteTaskRequest);
             }
         });
     }

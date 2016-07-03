@@ -77,6 +77,14 @@
                 android:text="@string/edit_task_details"
                 android:id="@+id/btEdit"
                 android:layout_gravity="center_horizontal"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_task"
+                android:id="@+id/btDelete"
+                android:layout_gravity="center_horizontal"/>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

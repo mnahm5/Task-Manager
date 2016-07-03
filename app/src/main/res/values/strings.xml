@@ -39,6 +39,7 @@
     <string name="logout">Logout</string>
     <string name="edit_task_details">Edit Task Details</string>
     <string name="delete_project">Delete Project</string>
+    <string name="delete_task">Delete Task</string>
     <string-array name="taskTypes">
         <item>Choose Task List</item>
         <item>To Do</item>
