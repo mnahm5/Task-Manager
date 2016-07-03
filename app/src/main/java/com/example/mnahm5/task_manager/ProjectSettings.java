@@ -40,6 +40,7 @@ public class ProjectSettings extends AppCompatActivity {
         final EditText etProjectName = (EditText) findViewById(R.id.etProjectName);
         final EditText etDescription = (EditText) findViewById(R.id.etDescription);
         final Button btEdit = (Button) findViewById(R.id.btEdit);
+        final Button btDelete = (Button) findViewById(R.id.btDelete);
         final Button btCancel = (Button) findViewById(R.id.btCancel);
 
         etProjectName.setText(projectName);
@@ -116,6 +117,55 @@ public class ProjectSettings extends AppCompatActivity {
                     RequestQueue queue = Volley.newRequestQueue(ProjectSettings.this);
                     queue.add(editProjectRequest);
                 }
+            }
+        });
+
+        btDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            boolean success = jsonResponse.getBoolean("success");
+
+                            if (success) {
+                                SharedPreferences sharedPreferences = getSharedPreferences("projectInfo", MODE_PRIVATE);
+                                Gson gson = new Gson();
+                                String allProjectDetailsJson = sharedPreferences.getString("allProjectDetailsJson", "");
+                                Type type = new TypeToken<List<ProjectCard>>(){}.getType();
+                                List<ProjectCard> projectCardList = gson.fromJson(allProjectDetailsJson, type);
+                                ArrayList<ProjectCard> projectCards = new ArrayList<ProjectCard>();
+                                for (int i = 0; i < projectCardList.size(); i++) {
+                                    if (!projectCardList.get(i).projectId.equals(projectId)) {
+                                        projectCards.add(i,projectCardList.get(i));
+                                    }
+                                }
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                allProjectDetailsJson = gson.toJson(projectCards);
+                                editor.putString("allProjectDetailsJson", allProjectDetailsJson);
+                                editor.apply();
+                                Intent intent = new Intent(ProjectSettings.this, Projects.class);
+                                ProjectSettings.this.startActivity(intent);
+                                finish();
+                            }
+                            else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(ProjectSettings.this);
+                                builder.setMessage("Project Deletion Failed")
+                                        .setNegativeButton("Retry",null)
+                                        .create()
+                                        .show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                DeleteProjectRequest deleteProjectRequest = new DeleteProjectRequest(projectId, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(ProjectSettings.this);
+                queue.add(deleteProjectRequest);
             }
         });
     }
