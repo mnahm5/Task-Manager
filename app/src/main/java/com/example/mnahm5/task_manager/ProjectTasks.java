@@ -33,9 +33,9 @@ public class ProjectTasks extends AppCompatActivity {
         String[] taskTitles = intent.getStringArrayExtra("taskTitles");
         String[] descriptions = intent.getStringArrayExtra("descriptions");
         String[] dueDates = intent.getStringArrayExtra("dueDates");
-        final ArrayList<TaskCard> taskCards = new ArrayList<TaskCard>();
+        final ArrayList<taskCard> taskCards = new ArrayList<taskCard>();
         for (int i = 0; i < taskIds.length; i++) {
-            taskCards.add(i,new TaskCard(taskIds[i], taskTitles[i], descriptions[i], dueDates[i]));
+            taskCards.add(i,new taskCard(taskIds[i], taskTitles[i], descriptions[i], dueDates[i]));
         }
         ListAdapter listAdapter = new taskCardCustomAdapter(this, taskCards);
         final ListView listView = (ListView) findViewById(R.id.taskListView);
@@ -44,7 +44,7 @@ public class ProjectTasks extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                TaskCard taskCard = (TaskCard) listView.getItemAtPosition(i);
+                taskCard taskCard = (taskCard) listView.getItemAtPosition(i);
                 Intent intent1 = new Intent(ProjectTasks.this, TaskDetails.class);
                 intent1.putExtra("taskId", taskCard.taskId);
                 intent1.putExtra("taskTitle", taskCard.taskTitle);
